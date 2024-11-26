@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Songs Homepage - Welcome to My Music Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Music Store</h1>
+</header>
+<form action="/listSongs" method="get" >
+    <label>Search: </label>
+    <input type="text" name="search">
+    <input type="submit" value="Search">
+</form>
+<main>
+    <h2>Choose a song:</h2>
+<!--    <div >-->
+<!--        <form action="/artist" method="post">-->
+<!--            <input type="submit" value="Submit">-->
+<!--            <br>-->
+<!--            <div th:each="song : ${songs}">-->
+
+<!--                <input required type="radio" name="trackId" th:value="${song.trackId}"/>-->
+
+<!--                <span th:text="${song.title} + (${song.album != null} ? ' , Album: '+${song.album.name} : '')"></span><br>-->
+<!--                <form th:action="'/songs/edit/'+${song.id}" method="get">-->
+<!--                    <input type="submit" value="Edit">-->
+<!--                </form>-->
+<!--                <form th:action="'/songs/delete/'+${song.id}" method="get">-->
+<!--                    <input type="submit" value="Delete">-->
+<!--                </form>-->
+
+<!--            </div>-->
+<!--            -->
+<!--        </form>-->
+<!--    </div>-->
+
+
+
+
+
+
+    <div th:if="${flag}">
+        <form action="/artist" method="post">
+
+            <div th:each="song : ${songs}">
+
+                <input required type="radio" name="trackId" th:value="${song.trackId}"/>
+
+                <span th:text="${song.title}"></span><br>
+
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <!--
+    za list gore
+
+----------------------------------------------------------------------------------------------------------------
+
+    za songs dole
+    -->
+    <div th:if="!${flag}">
+        <div th:each="song : ${songs}">
+            <span th:text="${song.title} + (${song.album != null} ? ' , Album: '+${song.album.name} : '')"></span><br>
+            <form th:action="'/songs/edit/'+${song.id}" method="get">
+                <input type="submit" value="Edit">
+            </form>
+            <form th:action="'/songs/delete/'+${song.id}" method="get">
+                <input type="submit" value="Delete">
+            </form>
+            <br>
+        </div>
+    </div>
+
+    <br>
+    <a href="http://localhost:8080/songs"><button>pesni</button> </a>
+    <br>
+    <a href="http://localhost:8080/songs/add"><button>Add</button></a>
+    <br>
+    <a href="http://localhost:8080/listSongs"><button>dodadi artist</button> </a>
+
+
+</main>
+</body>
+</html>
