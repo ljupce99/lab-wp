@@ -45,12 +45,14 @@ public class SongController {
         return "add-song";
     }
     @PostMapping("/songs/add-form")
-    public String getAddSongPage(@RequestParam String num, @RequestParam String title, @RequestParam String genre, @RequestParam int year, @RequestParam Long album, Model model){
+    public String getAddSongPage(@RequestParam String num, @RequestParam String title, @RequestParam String genre, @RequestParam int year, @RequestParam(required = false) Long album, Model model){
 //        System.out.println(num);
 //        System.out.println(title);
 //        System.out.println(genre);
 //        System.out.println(year);
-        Album al=albumService.findById(album);
+        Album al;
+
+        al=albumService.findById(album);
 
         Long id=null;
         songService.saveSong(id,al,num,title,genre,year);
@@ -71,7 +73,7 @@ public class SongController {
         return "add-song";
     }
     @PostMapping("/songs/edit-form/{id}")
-    public String getEditSongForm(@PathVariable Long id,@RequestParam String num, @RequestParam String title, @RequestParam String genre, @RequestParam int year, @RequestParam Long album){
+    public String getEditSongForm(@PathVariable Long id,@RequestParam String num, @RequestParam String title, @RequestParam String genre, @RequestParam int year, @RequestParam(required = false) Long album){
 
         Album al=albumService.findById(album);
         songService.saveSong(id,al,num,title,genre,year);
