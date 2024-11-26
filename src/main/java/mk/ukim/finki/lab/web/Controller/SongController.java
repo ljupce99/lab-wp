@@ -50,9 +50,12 @@ public class SongController {
 //        System.out.println(title);
 //        System.out.println(genre);
 //        System.out.println(year);
-        Album al;
+        Album al = null;
+        if(album!=null){
+            al=albumService.findById(album);
+        }
 
-        al=albumService.findById(album);
+        
 
         Long id=null;
         songService.saveSong(id,al,num,title,genre,year);
@@ -74,8 +77,10 @@ public class SongController {
     }
     @PostMapping("/songs/edit-form/{id}")
     public String getEditSongForm(@PathVariable Long id,@RequestParam String num, @RequestParam String title, @RequestParam String genre, @RequestParam int year, @RequestParam(required = false) Long album){
-
-        Album al=albumService.findById(album);
+        Album al = null;
+        if(album!=null){
+            al=albumService.findById(album);
+        }
         songService.saveSong(id,al,num,title,genre,year);
         return "redirect:/songs";
     }

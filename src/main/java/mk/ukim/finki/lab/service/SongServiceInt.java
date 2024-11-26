@@ -22,12 +22,17 @@ public class SongServiceInt implements SongService{
         if(id==null){
             id=(long)Math.random()*1000;
             Song s = new Song(id,number, title, rock, releaseYear);
-            s.setAlbum(album);
+            if(true){
+                s.setAlbum(album);
+            }
+
             songRepo.save(s);
             return "";
         }else {
             Song s=songRepo.findById(id);
-            s.setAlbum(album);
+            if(true){
+                s.setAlbum(album);
+            }
             s.setTitle(title);
             s.setGenre(rock);
             s.setTrackId(number);

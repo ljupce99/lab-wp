@@ -33,7 +33,7 @@
                 <option th:if="${ong.album}!=null" th:text="${ong.album.name}" th:value="${ong.album.id}"></option>
 
                 <option th:each="album : ${albums}" th:text="${album.name}" th:value="${album.id}" ></option>
-                <option>Prazno</option>
+                <option value="">Prazno</option>
 
 
             </select><label>Album</label><br>
@@ -56,7 +56,7 @@
                 <input type="text" name="genre" required><label>Rock</label><br>
                 <input type="number" name="year" required><label>releaseYear</label><br>
                 <select name="album">
-                    <option>Prazno</option>
+                    <option value="">Prazno</option>
                     <option th:each="album : ${albums}" th:text="${album.name}" th:value="${album.id}" ></option>
                 </select><label>Album</label>
 
