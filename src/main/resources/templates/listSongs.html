@@ -51,7 +51,7 @@
 
             <div th:each="song : ${songs}">
 
-                <input required type="radio" name="trackId" th:value="${song.trackId}"/>
+                <input required type="radio" name="trackId" th:value="${song.id}"/>
 
                 <span th:text="${song.title}"></span><br>
 

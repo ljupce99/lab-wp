@@ -39,9 +39,10 @@ public class Controller {
         return "listSongs";
     }
     @PostMapping("/artist")
-    public String artistServlet(@RequestParam("trackId") String TrackId, Model model, HttpServletRequest req, HttpServletResponse resp) {
+    public String artistServlet(@RequestParam("trackId") Long TrackId, Model model, HttpServletRequest req, HttpServletResponse resp) {
         model.addAttribute("artists", artistService.listArtists());
-        model.addAttribute("idtrack", TrackId);
+        Song song=songService.findById(TrackId);
+        model.addAttribute("idtrack", song.getTrackId());
         
         req.getSession().setAttribute("idtrack", TrackId);
 
@@ -50,16 +51,16 @@ public class Controller {
 
     @PostMapping("/Details")
     public String detailsServlet(@RequestParam("artistId") String ArtisID,Model model,HttpServletRequest req, HttpServletResponse resp) {
-        System.out.println(ArtisID);
-        System.out.println(req.getSession().getAttribute("idtrack").toString());
+//        System.out.println(ArtisID);
+//        System.out.println(req.getSession().getAttribute("idtrack").toString());
         Artist artist=artistService.findById(Long.parseLong(ArtisID));
-        String TrackID=req.getSession().getAttribute("idtrack").toString();
-        Song song=songService.findByTrackId(TrackID);
+        Long TrackID=(Long) req.getSession().getAttribute("idtrack");
+        Song song=songService.findById(TrackID);
         if(!song.getPerformers().contains(artist)) {
             songService.addArtistToSong(artist,song);
         }
 
-        song=songService.findByTrackId(TrackID);
+        song=songService.findById(TrackID);
 
         model.addAttribute("bro",songService.brojac(song.getId()));
 
