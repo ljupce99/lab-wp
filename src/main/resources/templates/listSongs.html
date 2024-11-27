@@ -73,7 +73,7 @@
             <form th:action="'/songs/edit/'+${song.id}" method="get">
                 <input type="submit" value="Edit">
             </form>
-            <form th:action="'/songs/delete/'+${song.id}" method="get">
+            <form th:action="'/songs/delete/'+${song.id}" method="post">
                 <input type="submit" value="Delete">
             </form>
             <br>
@@ -81,11 +81,11 @@
     </div>
 
     <br>
-    <a href="http://localhost:8080/songs"><button>pesni</button> </a>
+    <a href="http://localhost:8080/songs"><button>Edit/Delete</button> </a>
     <br>
     <a href="http://localhost:8080/songs/add"><button>Add</button></a>
     <br>
-    <a href="http://localhost:8080/listSongs"><button>dodadi artist</button> </a>
+    <a href="http://localhost:8080/listSongs"><button>List Songs</button> </a>
 
 
 </main>

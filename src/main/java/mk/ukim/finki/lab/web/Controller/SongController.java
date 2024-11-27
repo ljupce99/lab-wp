@@ -87,7 +87,7 @@ public class SongController {
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-    @GetMapping("/songs/delete/{songId}")
+    @PostMapping("/songs/delete/{songId}")
     public String deleteSong(@PathVariable Long songId, Model model){
         songService.delete(songId);
         return "redirect:/songs";
