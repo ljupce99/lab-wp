@@ -19,6 +19,7 @@ public class Song {
 
 //    @ManyToOne
     private Album album;
+    int brpjac=0;
 
 
     String trackId;

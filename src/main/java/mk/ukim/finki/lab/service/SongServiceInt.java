@@ -64,4 +64,9 @@ public class SongServiceInt implements SongService{
     public Song findById(Long Id) {
         return songRepo.findById(Id);
     }
+
+    @Override
+    public int brojac(Long id) {
+        return songRepo.brojac(id);
+    }
 }

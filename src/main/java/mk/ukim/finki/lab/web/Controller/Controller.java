@@ -61,6 +61,8 @@ public class Controller {
 
         song=songService.findByTrackId(TrackID);
 
+        model.addAttribute("bro",songService.brojac(song.getId()));
+
         model.addAttribute("song", song);
         return "songDetails";
     }

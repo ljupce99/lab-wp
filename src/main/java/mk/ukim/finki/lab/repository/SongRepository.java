@@ -43,6 +43,12 @@ public class SongRepository {
         }
         return "";
     }
+    public int brojac(Long songId){
+        int i=findById(songId).getBrpjac();
+        i++;
+        findById(songId).setBrpjac(i);
+        return findById(songId).getBrpjac();
+    }
     public Song findById(Long Id){
         return listaS.stream().filter(s -> s.getId().equals(Id)).findFirst().orElse(null);
     }
