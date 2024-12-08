@@ -93,4 +93,16 @@ public class SongController {
         return "redirect:/songs";
 
     }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    @PostMapping("/songs/Details/{id}")
+    public String detailSong(@PathVariable Long id, Model model){
+        Song song=songService.findById(id);
+
+        model.addAttribute("bro",songService.brojac(song.getId()));
+
+        model.addAttribute("song", song);
+        return "songDetails";
+    }
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public interface SongService {
     public List<Song> listSongs();
 
-    public Artist addArtistToSong(Artist artist, Song song);
+    public Artist addArtistToSong(Artist artist, Long song);
 
     public Song findByTrackId(String trackId);
     public String saveSong(Long id,Album album, String number, String title, String rock, int releaseYear);

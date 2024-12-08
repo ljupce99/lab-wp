@@ -7,6 +7,7 @@ import mk.ukim.finki.lab.repository.ArtistRepository;
 import mk.ukim.finki.lab.repository.SongRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class SongServiceInt implements SongService{
@@ -16,20 +17,26 @@ public class SongServiceInt implements SongService{
     public SongServiceInt(SongRepository songRepo, ArtistRepository artistRepo) {
         this.songRepo = songRepo;
         this.artistRepo = artistRepo;
+        List<Song> listaS=new ArrayList<>();
+        listaS.add(new Song( "T001", "Billie Jean", "Pop", 1982));
+        listaS.add(new Song( "T002", "Hells Bells", "Rock", 1980));
+        listaS.add(new Song( "T003", "Money", "Progressive Rock", 1973));
+        listaS.add(new Song( "T004", "Dreams", "Soft Rock", 1977));
+        listaS.add(new Song( "T005", "Come Together", "Rock", 1969));
+
+        listaS.stream().forEach(s->songRepo.save(s));
     }
     @Override
     public String saveSong(Long id,Album album, String number, String title, String rock, int releaseYear){
         if(id==null){
-            id=(long)Math.random()*1000;
-            Song s = new Song(id,number, title, rock, releaseYear);
+            Song s = new Song(number, title, rock, releaseYear);
             if(true){
                 s.setAlbum(album);
             }
-
             songRepo.save(s);
             return "";
         }else {
-            Song s=songRepo.findById(id);
+            Song s=songRepo.getReferenceById(id);
             if(true){
                 s.setAlbum(album);
             }
@@ -37,13 +44,15 @@ public class SongServiceInt implements SongService{
             s.setGenre(rock);
             s.setTrackId(number);
             s.setReleaseYear(releaseYear);
+            songRepo.save(s);
             return "";
         }
     }
 
     @Override
     public String delete(Long id) {
-        songRepo.delete(id);
+        Song s=songRepo.getReferenceById(id);
+        songRepo.delete(s);
         return "";
     }
 
@@ -52,21 +61,32 @@ public class SongServiceInt implements SongService{
         return songRepo.findAll();
     }
     @Override
-    public Artist addArtistToSong(Artist artist, Song song) {
-        return songRepo.addArtistToSong(artist, song);
+    public Artist addArtistToSong(Artist artist, Long song) {
+        Song s=songRepo.getReferenceById(song);
+//        songRepo.delete(s);
+        s.addPerformer(artist);
+        songRepo.save(s);
+        return artist;
     }
     @Override
     public Song findByTrackId(String trackId) {
-        return songRepo.findByTrackId(trackId);
+        return songRepo.findAll().stream().filter(s->s.getTrackId().equals(trackId)).findFirst().orElse(null);
     }
 
     @Override
     public Song findById(Long Id) {
-        return songRepo.findById(Id);
+        return songRepo.findById(Id).orElse(null);
     }
 
     @Override
     public int brojac(Long id) {
-        return songRepo.brojac(id);
+        Song song=songRepo.getReferenceById(id);
+        System.out.println(song.toString());
+        int brojac=song.getBrpjac();
+        brojac++;
+        song.setBrpjac(brojac);
+        songRepo.save(song);
+
+        return brojac;
     }
 }

@@ -1,21 +1,32 @@
 package mk.ukim.finki.lab.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
-//@Entity
 @AllArgsConstructor
-//@NoArgsConstructor
+@Entity
+@NoArgsConstructor
 public class Album {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String genre;
     private String releaseYear;
 
-    public Album(String thriller, String pop, String number) {
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
+    public Album(String backInBlack, String rock, String number) {
+        this.name = backInBlack;
+        this.genre = rock;
+        this.releaseYear = number;
+
     }
 }

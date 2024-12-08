@@ -57,10 +57,13 @@ public class Controller {
         Long TrackID=(Long) req.getSession().getAttribute("idtrack");
         Song song=songService.findById(TrackID);
         if(!song.getPerformers().contains(artist)) {
-            songService.addArtistToSong(artist,song);
+            songService.addArtistToSong(artist,TrackID);
         }
 
         song=songService.findById(TrackID);
+        //int brojac = songService.brojac(song.getId());
+        //System.out.println("noviot brojac sto dava greska"+brojac);
+
 
         model.addAttribute("bro",songService.brojac(song.getId()));
 

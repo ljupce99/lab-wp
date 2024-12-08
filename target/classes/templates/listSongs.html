@@ -73,6 +73,9 @@
             <form th:action="'/songs/edit/'+${song.id}" method="get">
                 <input type="submit" value="Edit">
             </form>
+            <form th:action="'/songs/Details/'+${song.id}" method="post">
+                <input type="submit" value="Details">
+            </form>
             <form th:action="'/songs/delete/'+${song.id}" method="post">
                 <input type="submit" value="Delete">
             </form>
