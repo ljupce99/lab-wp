@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,20 @@ public class Album {
         this.name = backInBlack;
         this.genre = rock;
         this.releaseYear = number;
+
+    }
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", releaseYear='" + releaseYear + '\'' +
+                '}';
+    }
+
+
+    public Album() {
 
     }
 }

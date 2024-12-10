@@ -18,28 +18,23 @@ public class SongServiceInt implements SongService{
         this.songRepo = songRepo;
         this.artistRepo = artistRepo;
         List<Song> listaS=new ArrayList<>();
-        listaS.add(new Song( "T001", "Billie Jean", "Pop", 1982));
-        listaS.add(new Song( "T002", "Hells Bells", "Rock", 1980));
-        listaS.add(new Song( "T003", "Money", "Progressive Rock", 1973));
-        listaS.add(new Song( "T004", "Dreams", "Soft Rock", 1977));
-        listaS.add(new Song( "T005", "Come Together", "Rock", 1969));
+        listaS.add(new Song( null,"T001", "Billie Jean", "Pop", 1982));
+        listaS.add(new Song( null,"T002", "Hells Bells", "Rock", 1980));
+        listaS.add(new Song(null, "T003", "Money", "Progressive Rock", 1973));
+        listaS.add(new Song(null, "T004", "Dreams", "Soft Rock", 1977));
+        listaS.add(new Song(null, "T005", "Come Together", "Rock", 1969));
 
         listaS.stream().forEach(s->songRepo.save(s));
     }
     @Override
     public String saveSong(Long id,Album album, String number, String title, String rock, int releaseYear){
         if(id==null){
-            Song s = new Song(number, title, rock, releaseYear);
-            if(true){
-                s.setAlbum(album);
-            }
+            Song s = new Song(album,number, title, rock, releaseYear);
             songRepo.save(s);
             return "";
         }else {
             Song s=songRepo.getReferenceById(id);
-            if(true){
-                s.setAlbum(album);
-            }
+            s.setAlbum(album);
             s.setTitle(title);
             s.setGenre(rock);
             s.setTrackId(number);

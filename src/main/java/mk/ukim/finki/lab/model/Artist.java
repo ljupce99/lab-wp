@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +28,9 @@ public class Artist {
         this.firstName = kurt;
         this.lastName = cobain;
         this.bio = grunge;
+    }
+
+    public Artist() {
+
     }
 }

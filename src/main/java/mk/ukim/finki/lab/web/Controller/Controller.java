@@ -53,6 +53,7 @@ public class Controller {
     public String detailsServlet(@RequestParam("artistId") String ArtisID,Model model,HttpServletRequest req, HttpServletResponse resp) {
 //        System.out.println(ArtisID);
 //        System.out.println(req.getSession().getAttribute("idtrack").toString());
+
         Artist artist=artistService.findById(Long.parseLong(ArtisID));
         Long TrackID=(Long) req.getSession().getAttribute("idtrack");
         Song song=songService.findById(TrackID);

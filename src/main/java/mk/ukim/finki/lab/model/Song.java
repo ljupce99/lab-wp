@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +30,18 @@ public class Song {
     @ManyToMany
     List<Artist> performers=new ArrayList<Artist>();
 
-    public Song(String number, String title, String rock, int releaseYear) {
+    public Song(Album album,String number, String title, String rock, int releaseYear) {
+        this.album=album;
         this.trackId = number;
         this.title = title;
         this.releaseYear = releaseYear;
         this.genre = rock;
     }
+
+    public Song() {
+
+    }
+
     public int brojac_update(){
         brpjac++;
         return brpjac;
