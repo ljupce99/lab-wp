@@ -1,5 +1,7 @@
 package mk.ukim.finki.lab.web.Controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import mk.ukim.finki.lab.model.Album;
 import mk.ukim.finki.lab.model.Song;
 import mk.ukim.finki.lab.service.AlbumService;
@@ -55,7 +57,7 @@ public class SongController {
             al=albumService.findById(album);
         }
 
-        
+
 
         Long id=null;
         songService.saveSong(id,al,num,title,genre,year);
@@ -94,15 +96,19 @@ public class SongController {
 
     }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     @PostMapping("/songs/Details/{id}")
-    public String detailSong(@PathVariable Long id, Model model){
+    public String detailSong(@PathVariable Long id, Model model,HttpServletRequest req, HttpServletResponse resp){
         Song song=songService.findById(id);
 
+        req.getSession().setAttribute("idtrack", id);
+
         model.addAttribute("bro",songService.brojac(song.getId()));
+
 
         model.addAttribute("song", song);
         return "songDetails";
     }
+//-------------------------------------------------------------------------------------------------------
 
 }

@@ -83,4 +83,11 @@ public class SongServiceInt implements SongService{
 
         return brojac;
     }
+    @Override
+    public void addCom(Long id, String text) {
+        Song song=songRepo.getReferenceById(id);
+//        System.out.println(song.toString());
+        song.AddComm(text);
+        songRepo.save(song);
+    }
 }

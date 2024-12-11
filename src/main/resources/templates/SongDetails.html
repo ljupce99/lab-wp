@@ -23,13 +23,25 @@
             <li  th:text="${song.album.releaseYear}"></li>
         </ul>
     </div>
+    <div>
+        <h2>Komentari:</h2>
+        <p th:each="comment : ${song.comments}" th:text="${comment}"></p>
+    </div>
+    <form action="/addcomment" method="post">
 
+        <label>Stavi Komentar</label>
 
-<footer>
-    <p>Pristapeno :
-        <span th:text="${bro}"></span>
-    </p>
-</footer>
+        <input type="text" name="text">
+
+        <input type="submit" value="Prati">
+    </form>
+
+    <footer>
+        <a href="/listSongs"><button >Vrati se</button></a>
+        <p>Pristapeno :
+            <span th:text="${bro}"></span>
+        </p>
+    </footer>
 </section>
 </body>
 </html>

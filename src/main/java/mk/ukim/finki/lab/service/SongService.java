@@ -17,5 +17,6 @@ public interface SongService {
     public String delete( Long id);
     public Song findById(Long Id);
     public int brojac(Long id);
+    public void addCom(Long id, String tex);
 
 }

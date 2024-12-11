@@ -30,6 +30,8 @@ public class Song {
     @ManyToMany
     List<Artist> performers=new ArrayList<Artist>();
 
+    List<String>comments=new ArrayList<>();
+
     public Song(Album album,String number, String title, String rock, int releaseYear) {
         this.album=album;
         this.trackId = number;
@@ -42,6 +44,9 @@ public class Song {
 
     }
 
+    public void AddComm(String tex){
+        comments.add(tex);
+    }
 
 
 

@@ -43,7 +43,7 @@ public class Controller {
         model.addAttribute("artists", artistService.listArtists());
         Song song=songService.findById(TrackId);
         model.addAttribute("idtrack", song.getTrackId());
-        
+
         req.getSession().setAttribute("idtrack", TrackId);
 
         return "artistsList";
@@ -55,8 +55,10 @@ public class Controller {
 //        System.out.println(req.getSession().getAttribute("idtrack").toString());
 
         Artist artist=artistService.findById(Long.parseLong(ArtisID));
+
         Long TrackID=(Long) req.getSession().getAttribute("idtrack");
         Song song=songService.findById(TrackID);
+
         if(!song.getPerformers().contains(artist)) {
             songService.addArtistToSong(artist,TrackID);
         }
@@ -69,6 +71,20 @@ public class Controller {
         model.addAttribute("bro",songService.brojac(song.getId()));
 
         model.addAttribute("song", song);
+        return "songDetails";
+    }
+    @PostMapping("/addcomment")
+    public String AddCom(@RequestParam String text,Model model,HttpServletRequest req, HttpServletResponse resp){
+        Long TrackID=(Long) req.getSession().getAttribute("idtrack");
+        Song song=songService.findById(TrackID);
+
+        System.out.println(text);
+        songService.addCom(song.getId(), text);
+
+        model.addAttribute("bro",songService.brojac(song.getId()));
+
+        model.addAttribute("song", song);
+
         return "songDetails";
     }
 
