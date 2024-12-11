@@ -58,7 +58,6 @@ public class SongServiceInt implements SongService{
     @Override
     public Artist addArtistToSong(Artist artist, Long song) {
         Song s=songRepo.getReferenceById(song);
-//        songRepo.delete(s);
         s.addPerformer(artist);
         songRepo.save(s);
         return artist;
@@ -76,7 +75,7 @@ public class SongServiceInt implements SongService{
     @Override
     public int brojac(Long id) {
         Song song=songRepo.getReferenceById(id);
-        System.out.println(song.toString());
+//        System.out.println(song.toString());
         int brojac=song.getBrpjac();
         brojac++;
         song.setBrpjac(brojac);

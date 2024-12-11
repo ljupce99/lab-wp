@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class SongController {
     final SongService songService;
     final AlbumService albumService;
+
     public SongController(SongService songService, AlbumService albumService) {
         this.songService = songService;
         this.albumService = albumService;
@@ -26,7 +27,7 @@ public class SongController {
     @GetMapping("/songs")
     public String getSongsPage(@RequestParam(required = false) String search ,@RequestParam(required = false) String error, Model model){
         List<Song> lista=songService.listSongs();
-        System.out.println(search);
+//        System.out.println(search);
         if(search!=null){
             lista=lista.stream().filter(i->i.getTitle().toLowerCase().contains(search.toLowerCase())).collect(Collectors.toList());
         }

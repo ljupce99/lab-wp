@@ -42,10 +42,7 @@ public class Song {
 
     }
 
-    public int brojac_update(){
-        brpjac++;
-        return brpjac;
-    }
+
 
 
     public void addPerformer(Artist artist) {

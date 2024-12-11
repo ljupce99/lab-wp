@@ -29,7 +29,7 @@ public class Controller {
     @GetMapping("/listSongs")
     public String listSongs(@RequestParam(required = false) String search ,Model model, HttpServletRequest req, HttpServletResponse resp) {
         List<Song> lista=songService.listSongs();
-        System.out.println(search);
+//        System.out.println(search);
         if(search!=null){
             lista=lista.stream().filter(i->i.getTitle().toLowerCase().contains(search.toLowerCase())).collect(Collectors.toList());
         }
