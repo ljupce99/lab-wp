@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 public class SongController {
     final SongService songService;
     final AlbumService albumService;
-
     public SongController(SongService songService, AlbumService albumService) {
         this.songService = songService;
         this.albumService = albumService;

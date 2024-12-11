@@ -33,7 +33,7 @@ public class Controller {
         if(search!=null){
             lista=lista.stream().filter(i->i.getTitle().toLowerCase().contains(search.toLowerCase())).collect(Collectors.toList());
         }
-        //lista.stream().forEach(i->i.setAlbum(null));
+
         model.addAttribute("flag",true);
         model.addAttribute("songs",lista);
         return "listSongs";
