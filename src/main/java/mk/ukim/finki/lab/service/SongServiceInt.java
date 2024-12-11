@@ -2,8 +2,10 @@ package mk.ukim.finki.lab.service;
 
 import mk.ukim.finki.lab.model.Album;
 import mk.ukim.finki.lab.model.Artist;
+import mk.ukim.finki.lab.model.Reviews;
 import mk.ukim.finki.lab.model.Song;
 import mk.ukim.finki.lab.repository.ArtistRepository;
+import mk.ukim.finki.lab.repository.RevivewsRepository;
 import mk.ukim.finki.lab.repository.SongRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,12 @@ import java.util.List;
 public class SongServiceInt implements SongService{
     private final SongRepository songRepo;
     private final ArtistRepository artistRepo;
+    private final RevivewsRepository revivewsRepo;
 
-    public SongServiceInt(SongRepository songRepo, ArtistRepository artistRepo) {
+    public SongServiceInt(SongRepository songRepo, ArtistRepository artistRepo, RevivewsRepository revivewsRepo) {
         this.songRepo = songRepo;
         this.artistRepo = artistRepo;
+        this.revivewsRepo = revivewsRepo;
         List<Song> listaS=new ArrayList<>();
         listaS.add(new Song( null,"T001", "Billie Jean", "Pop", 1982));
         listaS.add(new Song( null,"T002", "Hells Bells", "Rock", 1980));
@@ -79,6 +83,7 @@ public class SongServiceInt implements SongService{
         int brojac=song.getBrpjac();
         brojac++;
         song.setBrpjac(brojac);
+
         songRepo.save(song);
 
         return brojac;
@@ -86,8 +91,18 @@ public class SongServiceInt implements SongService{
     @Override
     public void addCom(Long id, String text) {
         Song song=songRepo.getReferenceById(id);
-//        System.out.println(song.toString());
-        song.AddComm(text);
+        Reviews reviews=new Reviews(text,song);
+        revivewsRepo.save(reviews);
+        song.AddComm(reviews);
+        System.out.println(song.toString());
         songRepo.save(song);
     }
+
+    @Override
+    public List<Reviews> listAllRew(Long id) {
+        Song s=songRepo.getReferenceById(id);
+//        s.getComments().stream().forEach(c->System.out.println("komentar : "+c));
+        return s.getComments();
+    }
+
 }

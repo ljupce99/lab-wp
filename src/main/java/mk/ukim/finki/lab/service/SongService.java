@@ -2,6 +2,7 @@ package mk.ukim.finki.lab.service;
 
 import mk.ukim.finki.lab.model.Album;
 import mk.ukim.finki.lab.model.Artist;
+import mk.ukim.finki.lab.model.Reviews;
 import mk.ukim.finki.lab.model.Song;
 
 import java.util.List;
@@ -18,5 +19,6 @@ public interface SongService {
     public Song findById(Long Id);
     public int brojac(Long id);
     public void addCom(Long id, String tex);
+    public List<Reviews> listAllRew(Long id);
 
 }

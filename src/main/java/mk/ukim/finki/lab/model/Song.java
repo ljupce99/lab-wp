@@ -30,7 +30,8 @@ public class Song {
     @ManyToMany
     List<Artist> performers=new ArrayList<Artist>();
 
-    List<String>comments=new ArrayList<>();
+    @OneToMany(mappedBy = "song")
+    List<Reviews>comments=new ArrayList<>();
 
     public Song(Album album,String number, String title, String rock, int releaseYear) {
         this.album=album;
@@ -44,11 +45,23 @@ public class Song {
 
     }
 
-    public void AddComm(String tex){
+    public void AddComm(Reviews tex){
         comments.add(tex);
     }
 
 
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", album=" + album +
+                ", brpjac=" + brpjac +
+                ", trackId='" + trackId + '\'' +
+                ", title='" + title + '\'' +
+                ", genre='" + genre + '\'' +
+                ", releaseYear=" + releaseYear +
+                '}';
+    }
 
     public void addPerformer(Artist artist) {
         performers.add(artist);

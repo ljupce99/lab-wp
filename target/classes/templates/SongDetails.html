@@ -23,10 +23,12 @@
             <li  th:text="${song.album.releaseYear}"></li>
         </ul>
     </div>
+
     <div>
         <h2>Komentari:</h2>
-        <p th:each="comment : ${song.comments}" th:text="${comment}"></p>
+        <p th:each="com : ${koment}" th:text="${com.comment}"></p>
     </div>
+
     <form action="/addcomment" method="post">
 
         <label>Stavi Komentar</label>
