@@ -25,26 +25,26 @@
 </form>
 <main>
     <h2>Choose a song:</h2>
-<!--    <div >-->
-<!--        <form action="/artist" method="post">-->
-<!--            <input type="submit" value="Submit">-->
-<!--            <br>-->
-<!--            <div th:each="song : ${songs}">-->
+    <!--    <div >-->
+    <!--        <form action="/artist" method="post">-->
+    <!--            <input type="submit" value="Submit">-->
+    <!--            <br>-->
+    <!--            <div th:each="song : ${songs}">-->
 
-<!--                <input required type="radio" name="trackId" th:value="${song.trackId}"/>-->
+    <!--                <input required type="radio" name="trackId" th:value="${song.trackId}"/>-->
 
-<!--                <span th:text="${song.title} + (${song.album != null} ? ' , Album: '+${song.album.name} : '')"></span><br>-->
-<!--                <form th:action="'/songs/edit/'+${song.id}" method="get">-->
-<!--                    <input type="submit" value="Edit">-->
-<!--                </form>-->
-<!--                <form th:action="'/songs/delete/'+${song.id}" method="get">-->
-<!--                    <input type="submit" value="Delete">-->
-<!--                </form>-->
+    <!--                <span th:text="${song.title} + (${song.album != null} ? ' , Album: '+${song.album.name} : '')"></span><br>-->
+    <!--                <form th:action="'/songs/edit/'+${song.id}" method="get">-->
+    <!--                    <input type="submit" value="Edit">-->
+    <!--                </form>-->
+    <!--                <form th:action="'/songs/delete/'+${song.id}" method="get">-->
+    <!--                    <input type="submit" value="Delete">-->
+    <!--                </form>-->
 
-<!--            </div>-->
-<!--            -->
-<!--        </form>-->
-<!--    </div>-->
+    <!--            </div>-->
+    <!--            -->
+    <!--        </form>-->
+    <!--    </div>-->
 
 
 
@@ -89,7 +89,7 @@
     </div>
 
     <br>
-    <a th:block sec:authorize="hasAnyRole('ADMIN', 'USER')" href="http://localhost:8080/songs"><button>Edit/Delete</button> </a>
+    <a href="http://localhost:8080/songs"><button>Edit/Delete</button> </a>
     <br>
     <a th:block sec:authorize="hasRole('ADMIN')" href="http://localhost:8080/songs/add"><button>Add</button></a>
     <br>

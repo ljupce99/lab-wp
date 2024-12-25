@@ -29,7 +29,7 @@
         <p th:each="com : ${koment}" th:text="${com.comment}"></p>
     </div>
 
-    <form th:block sec:authorize="hasRole('ADMIN') or hasRole('USER')" action="/addcomment" method="post">
+    <form action="/addcomment" method="post">
 
         <label>Stavi Komentar</label>
 
