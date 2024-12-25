@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->authorizeRequests
                         .requestMatchers("/login","/listSongs","/Details","/artist")
                         .permitAll()
-                        .requestMatchers("/addcomment")
+                        .requestMatchers("/addcomment","/songs/Details/*","/songs")
                         .hasRole("USER")
                         .requestMatchers("/**")
                         .hasRole("ADMIN")

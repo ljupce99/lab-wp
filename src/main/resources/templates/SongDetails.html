@@ -24,12 +24,12 @@
         </ul>
     </div>
 
-    <div>
+    <div >
         <h2>Komentari:</h2>
         <p th:each="com : ${koment}" th:text="${com.comment}"></p>
     </div>
 
-    <form action="/addcomment" method="post">
+    <form th:block sec:authorize="hasRole('ADMIN') or hasRole('USER')" action="/addcomment" method="post">
 
         <label>Stavi Komentar</label>
 
